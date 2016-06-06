@@ -1,9 +1,9 @@
 <?php
 /**
  * @package wp-duplicate-featured-image
- * Plugin Name: wp-duplicate-featured-image
+ * Plugin Name: Duplicate Featured Image
  * Version: 0.1
- * Description: Plugin will auto set first attachment image as feature image, remove duplicate first image
+ * Description: Auto set first attachment image as feature image, remove duplicate first image
  * Author: Niteco
  * Author URI: http://niteco.se/
  * Plugin URI: PLUGIN SITE HERE
