@@ -1,7 +1,7 @@
 {
-  "name": "benjaminmedia/wp-featured-image",
+  "name": "benjaminmedia/wp-duplicate-featured-image",
   "type": "wordpress-plugin",
-  "homepage": "https://github.com/BenjaminMedia/wp-featured-image",
+  "homepage": "https://github.com/BenjaminMedia/wp-duplicate-featured-image",
   "license": "GPLv3",
   "description": "Plugin will auto set first attachment image as feature image, remove duplicate image while showing post content",
   "keywords": ["plugin"],
