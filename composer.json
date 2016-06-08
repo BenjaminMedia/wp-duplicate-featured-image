@@ -3,7 +3,7 @@
   "type": "wordpress-plugin",
   "homepage": "https://github.com/BenjaminMedia/wp-duplicate-featured-image",
   "license": "GPLv3",
-  "description": "Plugin will auto set first attachment image as feature image, remove duplicate image while showing post content",
+  "description": "Plugin will auto set first attachment image as feature image, hide duplicate first attachment image while showing post content",
   "keywords": ["plugin"],
   "require": {
     "composer/installers": "~1.0.6"
