@@ -2,7 +2,7 @@
 /**
  * @package wp-duplicate-featured-image
  * Plugin Name: Duplicate Featured Image
- * Version: 0.2
+ * Version: 0.3
  * Description: Auto set first attachment image as feature image, remove duplicate first image
  * Author: Niteco
  * Author URI: http://niteco.se/
@@ -18,8 +18,31 @@ error_reporting(E_ERROR);
 // require helper
 require_once dirname(__FILE__). '/helper.php';
 
-add_action('save_post', 'featured_image_set_first_attachment');
+add_action('wp_head', 'featured_image_hide_first_attachment');
+/**
+ * remove duplicate first image
+ * @param $content
+ * @return mixed|string
+ */
+function featured_image_hide_first_attachment() {
+    ?>
+<script type="text/javascript">
+    var array_url = [];
+    jQuery(document).ready(function() {
+        jQuery('article.post img').each(function(index) {
+            thumbnail_url = jQuery(this).attr('src');
+            if (array_url[thumbnail_url]) {
+                jQuery(this).hide();
+            } else {
+                array_url[thumbnail_url] = 1;
+            }
+        });
+    });
+</script>
+    <?php
+}
 
+add_action('save_post', 'featured_image_set_first_attachment');
 /**
  * auto set first attachment image as feature image
  * @param $post_id
@@ -33,30 +56,6 @@ function featured_image_set_first_attachment ($post_id)
     $helper = new featured_image_helper();
     $helper->set_post_thumbnail($post_id);
 }
-
-
-add_filter('the_content', 'featured_image_hide_first_attachment');
-/**
- * remove duplicate first image
- * @param $content
- * @return mixed|string
- */
-function featured_image_hide_first_attachment($content)
-{
-    preg_match('%<img.*?src=["\'](.*?)["\'].*?/>%i', $content , $result);
-    if (!is_array($result) || count($result) < 1) {
-        return $content;
-    }
-
-    $post = get_post();
-    $thumbnail_url = get_the_post_thumbnail_url($post, 'full');
-    if (trim($result[1]) == trim($thumbnail_url)) {
-        $content = str_replace($result[0], '', $content);
-    }
-
-    return $content;
-}
-
 
 if (function_exists( 'add_theme_support' ))
 {
