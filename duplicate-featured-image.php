@@ -2,7 +2,7 @@
 /**
  * @package wp-duplicate-featured-image
  * Plugin Name: Duplicate Featured Image
- * Version: 0.5
+ * Version: 0.6
  * Description: Auto set first attachment image as feature image, remove duplicate first image
  * Author: Niteco
  * Author URI: http://niteco.se/
@@ -25,7 +25,7 @@ add_action('wp_head', 'featured_image_hide_first_attachment');
  * @return mixed|string
  */
 function featured_image_hide_first_attachment() {
-    wp_enqueue_script(‘jquery’);
+    wp_enqueue_script('jquery');
     ?>
 <script type="text/javascript">
     var array_url = [];
@@ -44,21 +44,6 @@ function featured_image_hide_first_attachment() {
     });
 </script>
     <?php
-}
-
-add_action('save_post', 'featured_image_set_first_attachment');
-/**
- * auto set first attachment image as feature image
- * @param $post_id
- */
-function featured_image_set_first_attachment ($post_id)
-{
-    // if this is just a revision
-    if (wp_is_post_revision( $post_id ) )
-        return;
-
-    $helper = new featured_image_helper();
-    $helper->set_post_thumbnail($post_id);
 }
 
 if (function_exists( 'add_theme_support' ))
